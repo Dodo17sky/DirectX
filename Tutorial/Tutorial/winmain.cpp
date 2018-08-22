@@ -1,10 +1,45 @@
 #pragma once
 
-#include <Windows.h>
+#include "DXApp.h"
+
+class TestApp : public DXApp
+{
+public:
+    TestApp(HINSTANCE hInstance);
+    ~TestApp();
+
+    bool Init() override;
+    void Update(float dt) override;
+    void Render(float dt) override;
+};
 
 int WINAPI WinMain(__in HINSTANCE hInstance, __in HINSTANCE hPrevInstance, __in LPSTR lCmdLine, __in int nShowCmd)
 {
-    MessageBox(NULL, "Hello DirectX", "Test", NULL);
+    TestApp testApp(hInstance);
 
-    return 0;
+    if(!testApp.Init())
+        return 1;
+
+    return testApp.Run();
+}
+
+TestApp::TestApp(HINSTANCE hInstance) : DXApp(hInstance)
+{
+}
+
+TestApp::~TestApp()
+{
+}
+
+bool TestApp::Init()
+{
+    return DXApp::Init();
+}
+
+void TestApp::Update(float dt)
+{
+}
+
+void TestApp::Render(float dt)
+{
 }
